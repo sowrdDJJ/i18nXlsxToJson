@@ -18,7 +18,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "node-xlsx": "^0.21.0"
+    "node-xlsx": "^0.21.0",
+    "react": "^18.2.0"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.5",
@@ -29,10 +30,10 @@
   "build": {
     "productName": "翻译xlsx转json",
     "nsis": {
-      "oneClick": false, 
+      "oneClick": false,
       "language": "2052",
       "perMachine": true,
-      "allowToChangeInstallationDirectory": true 
+      "allowToChangeInstallationDirectory": true
     }
   }
 }

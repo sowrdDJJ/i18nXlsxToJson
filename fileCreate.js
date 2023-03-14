@@ -4,7 +4,7 @@ const xlsx = require("node-xlsx");
 const { dialog } = require("electron");
 
 async function handleFileOpen() {
-  try  {
+  try {
     const { canceled, filePaths } = await dialog.showOpenDialog();
     if (canceled) {
       return;
@@ -17,22 +17,30 @@ async function handleFileOpen() {
             item = item.map((itemG) => {
               let contentData = itemG.split("");
               let newContentData = [];
-              contentData.forEach((itemC, index) => {
-                if (
-                  itemC === "x" &&
-                  index - 1 >= 0 &&
-                  contentData[index - 1] === "x"
-                ) {
-                  return;
-                }
-                newContentData.push(itemC);
-              });
+              // contentData.forEach((itemC, index) => {
+                // if (
+                //   itemC === "x" &&
+                //   index - 1 >= 0 &&
+                //   contentData[index - 1] === "x"
+                // ) {
+                //   return;
+                // }
+              //   newContentData.push(itemC);
+              // });
               let curVar = 0;
-              newContentData = newContentData.map((itemNC) => {
-                if (itemNC === "x") {
+              let empty = [];
+              newContentData = contentData.map((itemNC, indexNC) => {
+                if (
+                  itemNC === "x" &&
+                  indexNC - 1 >= 0 &&
+                  contentData[indexNC - 1] === "x"
+                ) {
                   itemNC = `{${curVar}}`;
+                  empty.push(indexNC - 1);
                 }
                 return itemNC;
+              }).filter((itemNF, indexNF) => {
+                return !empty.includes(indexNF)
               });
               return newContentData.join("");
             });
@@ -66,11 +74,11 @@ async function handleFileOpen() {
           .join(filePaths[0])
           .split("\\")
           .splice(0, path.join(filePaths[0]).split("\\").length - 1)
-          .join("\\")}/data_${parseInt(Math.random()*10000)}.json`;
+          .join("\\")}/data_${parseInt(Math.random() * 10000)}.json`;
         fs.writeFile(newFilePath, JSON.stringify(jsonData), (err) => {
           console.log(err);
         });
-  
+
         return {
           type: "success",
           data: xlsxData[0].data,
