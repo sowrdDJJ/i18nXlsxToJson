@@ -58,8 +58,8 @@ async function handleFileOpen(params, message) {
             }
           }
         });
-        xlsxData[0].data = xlsxData[0].data.splice(1);
-        xlsxData[0].data.forEach((item, index) => {
+        console.log(jsonData);
+        xlsxData[0].data.splice(1).forEach((item, index) => {
           if (item.length) {
             item.forEach((itemC, indexC) => {
               for (let i in jsonData) {
@@ -70,6 +70,12 @@ async function handleFileOpen(params, message) {
             });
           }
         });
+        console.log(xlsxData[0].data[0]);
+        xlsxData[0].data[0].forEach((item, index) => {
+          console.log(item);
+          jsonData[item] = jsonData[index]
+          delete jsonData[index]
+        })
         const newFilePath = `${path
           .join(filePaths[0])
           .split("\\")
