@@ -6,7 +6,7 @@ const { handleFileOpen } = require('./fileCreate');
 function createWindow() {
     const mainWindow = new BrowserWindow({
         width: 500,
-        height: 300,
+        height: 400,
         // width: 1000,
         // height: 1200,
         webPreferences: {
