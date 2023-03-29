@@ -21,7 +21,7 @@
     #fileBtn {
       color: rgb(0, 229, 255);
       display: block;
-      width: 200px;
+      width: 300px;
       height: 100px;
       font-size: 20px;
       border-radius: 5px;
@@ -35,10 +35,34 @@
       color: aliceblue;
       min-width: 200px;
     }
+    .start_box {
+      display: flex;
+      align-items: center;
+      width: 300px;
+    }
+    .start_text {
+      display: inline-block;
+      font-size: 12px;
+      color: #e9e4e4;
+      margin-left: 5px;
+      line-height: 30px;
+      height: 30;
+    }
+    .start_num {
+      width: 200px;
+      height: 30px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      border: 0;
+    }
   </style>
   <body>
     <!-- Title: <input id="title"/>
     <button id="btn" type="button">Set</button> -->
+    <div class="start_box">
+      <span class="start_text">startNumber：</span>
+      <input class="start_num">
+    </div>
     <div type="button" id="fileBtn">Open a File</div>
     <div class="text">
       <strong id="filePath"></strong>

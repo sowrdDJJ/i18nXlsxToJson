@@ -3,7 +3,7 @@ const fs = require("fs");
 const xlsx = require("node-xlsx");
 const { dialog } = require("electron");
 
-async function handleFileOpen() {
+async function handleFileOpen(params, message) {
   try {
     const { canceled, filePaths } = await dialog.showOpenDialog();
     if (canceled) {
@@ -64,7 +64,7 @@ async function handleFileOpen() {
             item.forEach((itemC, indexC) => {
               for (let i in jsonData) {
                 if (indexC === i * 1) {
-                  jsonData[i][`${lKey[i]}_${index}`] = itemC;
+                  jsonData[i][`${lKey[i]}_${index + message.number}`] = itemC;
                 }
               }
             });
